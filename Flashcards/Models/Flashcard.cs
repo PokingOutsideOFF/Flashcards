@@ -1,10 +1,14 @@
-﻿namespace Flashcards.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Flashcards.Models
 {
-     public class Flashcard
+    public class Flashcard
     {
-        public int CardID { get; set; }
+        [Key]
+        public int CardId { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
-        public int StackID { get; set; }
+        public int StackId { get; set; }
+        public Stack Stack { get; set; }
     }
 }
