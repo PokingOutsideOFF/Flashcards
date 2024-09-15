@@ -6,7 +6,6 @@ namespace Flashcards.DTO
 {
     public class StackDTO
     { 
-        public int StackNumber { get; set; }
         public string StackName { get; set; }
         public ICollection<Flashcard> Flashcards { get; set; }
         public ICollection<StudySession> StudySessions { get; set; }

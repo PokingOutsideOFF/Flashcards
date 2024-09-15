@@ -5,7 +5,14 @@ namespace Flashcards.Views
 {
     public class StackView
     {
-        public void Menu(DatabaseContext context)
+        private DatabaseContext _context;
+
+        public StackView(DatabaseContext context)
+        {
+            _context = context;
+        }
+
+        public void Menu()
         {
             while (true)
             {
@@ -15,12 +22,14 @@ namespace Flashcards.Views
                     .PageSize(7)
                     .AddChoices(new[]
                     {
-                    "1. Return to Main Menu", "2. Add Stack", "3. View Stack", "4. Update Stack", "5. Delete Stack"
+                    "1. Return to Main Menu", "2. Add Stack", "3. View Stack", "4. Edit Stack", "5. Delete Stack"
                     }));
-                var service = new StackService(context);
-                if (int.Parse(choice.Substring(0, 1)) == 1) break;
+                var service = new StackService(_context);
+                int opt = int.Parse(choice.Substring(0, 1));
 
-                service.SelectOperation(int.Parse(choice.Substring(0, 1)));
+                if (opt == 1) break;
+
+                service.SelectOperation(opt);
             }
         }
     }

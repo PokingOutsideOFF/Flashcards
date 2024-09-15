@@ -1,6 +1,7 @@
 ﻿using Flashcards.Models;
 using Spectre.Console;
 using System;
+using System.Security.Cryptography;
 
 namespace Flashcards.Repository
 {
@@ -18,10 +19,9 @@ namespace Flashcards.Repository
         ?? 0: The null-coalescing operator ?? ensures that maxNumber is set to 0 if Max returns null. This allows the first StackNumber to start at 1.*/
        public void Insert(string Stack_Name)
         {
-            var maxNumber = _context.Stack.Max(s => (int?)s.StackNumber) ?? 0;
+           // var maxNumber = _context.Stack.Max(s => (int?)s.StackId) ?? 0
             var stack = new Stack
             {
-                StackNumber = maxNumber + 1,
                 StackName = Stack_Name
             };
             _context.Add(stack);
@@ -41,52 +41,63 @@ namespace Flashcards.Repository
 
             AnsiConsole.Markup("\n[blue]Stack Table[/]\n");
             var table = new Table();
-            table.AddColumn("Stack Id");
             table.AddColumn("Stack Name");
+
             foreach (var stack in allStacks)
             {
                 table.AddRow(
-                    stack.StackNumber.ToString(),
                     stack.StackName);
             }
             AnsiConsole.Write(table);
             return allStacks.Count;
         }
 
-        public void Update(int id, string Stack_Name)
+        public void Update(string Stack_Name)
         {
             var stack = new Stack
             {
-                StackId = id,
                 StackName = Stack_Name
             };
             _context.Update(stack);
-            AnsiConsole.Markup("[red]Row updated[/]");
+            AnsiConsole.Markup("[red]Row updated[/]\n\n");
             _context.SaveChanges();
         }
 
-        public void Delete(int number)
+        public void Delete(string Stack_Name)
         {
-            var query = _context.Stack.FirstOrDefault(s => s.StackNumber == number);
+            var query = _context.Stack.FirstOrDefault(s => s.StackName.ToLower() == Stack_Name.ToLower());
+
             if(query != null)
             {
                 _context.Remove(query);
                 _context.SaveChanges();
+                GetStack();
             }
             else
             {
-                Console.WriteLine("Stack not found");
+                Console.WriteLine("Stack not found\n\n");
                 return;
             }
 
-            
-            var entities = _context.Stack.Where(s => s.StackNumber > number).ToList();
-            foreach(var entity in entities)
-            {
-                entity.StackNumber -= 1;
-            }
-            AnsiConsole.Markup("[red]Row deleted[/]\n");
+            AnsiConsole.Markup("[red]Row deleted[/]\n\n");
             _context.SaveChanges();
         }
+
+        public bool CheckNameExists(string stackName)
+        {
+            var query = _context.Stack.Where(s => s.StackName == stackName).ToList();
+            if(query.Count == 0) return false;
+            return true;
+        }
+
+        public int GetStackId(string stackName)
+        {
+            int stackId = _context.Stack
+                          .Where(s => s.StackName == stackName)
+                          .Select(s => s.StackId)
+                          .FirstOrDefault();
+            return stackId;
+        }
+
     }
 }

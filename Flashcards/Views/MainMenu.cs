@@ -34,12 +34,12 @@ namespace Flashcards.Views
             switch (choice)
             {
                 case 1:
-                    var stackView = new StackView();
-                    stackView.Menu(context);
+                    var stackView = new StackView(context);
+                    stackView.Menu();
                     break;
                 case 2:
-                    var flashcardView = new FlashcardView();
-                    flashcardView.Menu(context);
+                    var flashcardView = new FlashcardView(context);
+                    flashcardView.Menu();
                     break;
                 case 5:
                     break;
