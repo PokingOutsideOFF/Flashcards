@@ -10,20 +10,21 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
 2. Modify the configuration file to use these environment variables:
    ```xml
    <configuration>
-       < appSettings >
-           < add key = "FlashcardsDBConnection" value = "Data Source=${DB_SERVER};Initial Catalog=${DB_NAME};Integrated Security=True;" />
-       </ appSettings >
-   </ configuration >
+       <appSettings>
+           <add key = "FlashcardsDBConnection" value = "Data Source=${DB_SERVER};Initial Catalog=${DB_NAME};Integrated Security=True;" />
+       </appSettings >
+   </configuration >
    ```
 
 3. Create tables on your SQL Server in following manner:
-   Stack Table:
+   ```Stack Table:
    CREATE TABLE Stack (
     StackId INT IDENTITY(1,1) PRIMARY KEY,
     StackName NVARCHAR(50) NOT NULL
    );
+   ```
 
-   Flashcard Table:
+   ```Flashcard Table:
    CREATE TABLE Flashcard (
     CardId INT IDENTITY(1,1) PRIMARY KEY,
     StackId INT NOT NULL,
@@ -35,8 +36,9 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
         ON UPDATE CASCADE
         ON DELETE CASCADE
    );
+   ```
 
-   Study Session Table:
+   ```Study Session Table:
    CREATE TABLE StudySession (
     SessionId INT IDENTITY(1,1) PRIMARY KEY,
     StackId INT NOT NULL,
@@ -49,6 +51,7 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
         ON UPDATE CASCADE
         ON DELETE CASCADE
     );
+   ```
    
 ## Project Workflow:
 
