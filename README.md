@@ -8,12 +8,13 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
    - `DB_NAME`: Your database name
 
 2. Modify the configuration file to use these environment variables:
-   xml
+   ```xml
    <configuration>
        < appSettings >
            < add key = "FlashcardsDBConnection" value = "Data Source=${DB_SERVER};Initial Catalog=${DB_NAME};Integrated Security=True;" />
        </ appSettings >
    </ configuration >
+   ```
 
 3. Create tables on your SQL Server in following manner:
    Stack Table:
