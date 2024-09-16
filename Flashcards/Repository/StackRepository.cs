@@ -14,19 +14,15 @@ namespace Flashcards.Repository
             _context = context;
         }
 
-        /*  (int?) s.StackNumber: Casting StackNumber to a nullable integer (int?) ensures that Max returns null if there are no records.
-        *  This prevents errors when trying to compute the maximum value on an empty table.
-        ?? 0: The null-coalescing operator ?? ensures that maxNumber is set to 0 if Max returns null. This allows the first StackNumber to start at 1.*/
        public void Insert(string Stack_Name)
         {
-           // var maxNumber = _context.Stack.Max(s => (int?)s.StackId) ?? 0
             var stack = new Stack
             {
                 StackName = Stack_Name
             };
             _context.Add(stack);
             _context.SaveChanges();
-            AnsiConsole.Markup("[red]Row inserted[/]\n");
+            AnsiConsole.Markup("[red]Stack inserted[/]\n");
             GetStack();
         }
 
@@ -66,7 +62,7 @@ namespace Flashcards.Repository
             entity.StackName = updatedStackName;
             
             _context.SaveChanges();
-            AnsiConsole.Markup("[red]Row updated[/]\n\n");
+            AnsiConsole.Markup("[red]Stack updated[/]\n\n");
             GetStack();
         }
 
@@ -82,7 +78,7 @@ namespace Flashcards.Repository
        
             _context.Stack.Remove(entity);
             _context.SaveChanges();
-            AnsiConsole.Markup("[red]Row deleted[/]\n\n");
+            AnsiConsole.Markup("\n[red]Stack deleted[/]\n\n");
             GetStack();
 
         }

@@ -27,3 +27,8 @@ public class Program
            < add key = "FlashcardsDBConnection" value = "Data Source=${DB_SERVER};Initial Catalog=${DB_NAME};Integrated Security=True;" />
        </ appSettings >
    </ configuration >*/
+
+
+/*  (int?) s.StackNumber: Casting StackNumber to a nullable integer (int?) ensures that Max returns null if there are no records.
+       *  This prevents errors when trying to compute the maximum value on an empty table.
+       ?? 0: The null-coalescing operator ?? ensures that maxNumber is set to 0 if Max returns null. This allows the first StackNumber to start at 1.*/

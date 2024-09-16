@@ -54,10 +54,12 @@ namespace Flashcards.Services
                     break;
 
                 case 6:
-                    FlashcardView view = new FlashcardView(_context);
+                    var view = new FlashcardView(_context);
+                    if (repo.GetAllCards().Count == 0) {
+                        break;
+                    }
                     int choice = view.UpdateMenu();
                     Console.Clear();
-                    repo.GetAllCards();
                     switch (choice)
                     {
                         case 1:

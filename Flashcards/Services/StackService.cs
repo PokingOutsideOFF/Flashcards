@@ -54,7 +54,7 @@ namespace Flashcards.Services
 
                     break;
             }
-            AnsiConsole.Markup("[blue]Press enter to continue....[/]");
+            AnsiConsole.Markup("\n[blue]Press enter to continue....[/]");
             Console.ReadLine();
             Console.Clear();
         }

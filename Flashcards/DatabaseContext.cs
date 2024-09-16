@@ -8,9 +8,9 @@ namespace Flashcards
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<Stack> Stack { get; set; }
-        public DbSet<Flashcard> Flashcard { get; set; }
-        public DbSet<StudySession> StudySession { get; set; }
+        public DbSet<Stack>? Stack { get; set; }
+        public DbSet<Flashcard>? Flashcard { get; set; }
+        public DbSet<StudySession>? StudySession { get; set; }
         private string? connectionString = ConfigurationManager.AppSettings.Get("FlashcardsDBConnection");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,5 +1,4 @@
-﻿using Flashcards.DTO;
-using Flashcards.Models;
+﻿using Flashcards.Models;
 using Spectre.Console;
 
 namespace Flashcards.Repository

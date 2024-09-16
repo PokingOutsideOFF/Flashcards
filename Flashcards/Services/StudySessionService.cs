@@ -22,22 +22,24 @@ namespace Flashcards.Services
             if (choice == 3)
             {
                 string stackName = flashcardView.GetStackName();
-                var stack = new StackRepository(_context);
-                int stackId = stack.GetStackId(stackName);
+                var stackRepo = new StackRepository(_context);
+                int stackId = stackRepo.GetStackId(stackName);
                 var cardRepo = new FlashcardRepository(_context, stackId);
 
+                DateTime startDate = DateTime.Now;
+                Stopwatch timer = new Stopwatch();
+                int score = 0;
+                string duration;
+
+                //Get all flashcard from repo
                 var cards = cardRepo.GetAllCards();
                 Console.Clear();
                 Console.WriteLine("Starting Study Session: \n\n");
-                DateTime startDate = DateTime.Now;
-                Stopwatch timer = new Stopwatch();
 
+                Console.WriteLine(startDate);
                 //Extract question and answer from database;
-                int score = 0;
-                string duration;
                 timer.Start();
-                foreach (var card in cards)
-                {
+                foreach (var card in cards) { 
                     Console.Write(card.Question + ": " );
                     string ans = userInput.GetText();
                     if(ans.ToLower().Trim() == card.Answer.ToLower().Trim())
@@ -47,6 +49,7 @@ namespace Flashcards.Services
                     }
                     else
                         AnsiConsole.Markup("[red]Wrong answer[/]\n\n");
+
                     Console.Write("Press 1 to continue: ");
                     int num = userInput.GetInt();
                     if (num != 1)

@@ -54,7 +54,7 @@ namespace Flashcards.Views
             while (true)
             {
                 
-                AnsiConsole.Markup($"\nCurrent stack: [blue] {stackName} [/]\n\n");
+                AnsiConsole.Markup($"\nCurrent stack:[blue] {stackName} [/]\n\n");
                 string choice = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                     .Title("Manage Flashcard Menu")
