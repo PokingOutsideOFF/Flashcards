@@ -9,7 +9,7 @@ namespace Flashcards.Views
 
         public StackView(DatabaseContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         public void Menu()

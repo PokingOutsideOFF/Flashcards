@@ -8,7 +8,7 @@ namespace Flashcards.Services
         private DatabaseContext _context;
         public StackService(DatabaseContext context)
         {
-            _context = context;
+            this._context = context;
         }
 
         public void SelectOperation(int choice)

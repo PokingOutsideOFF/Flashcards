@@ -11,11 +11,11 @@ namespace Flashcards.Repository
 
         public FlashcardRepository(DatabaseContext context, int stackId)
         {
-            _context = context;
+            this._context = context;
             this.stackId = stackId;
         }
 
-        public int GetAllCards()
+        public List<FlashcardDTO> GetAllCards()
         {
             /*var entities = (from flashcard in _context.Flashcard
                                         join stack in _context.Stack
@@ -35,7 +35,7 @@ namespace Flashcards.Repository
                           })
                           .ToList();
             GetTable(entities);
-            return entities.Count;
+            return entities;
         }
 
         public void GetXCards(int limit)

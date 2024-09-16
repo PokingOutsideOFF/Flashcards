@@ -11,16 +11,16 @@ namespace Flashcards.Services
 {
     public class FlashcardService
     {
-        private DatabaseContext context;
+        private DatabaseContext _context;
 
-        public FlashcardService(DatabaseContext context)
+        public FlashcardService(DatabaseContext _context)
         {
-            this.context = context;
+            this._context = _context;
         }
 
         public void SelectOperation(int opt, string stackName, int stackId)
         {
-            var repo = new FlashcardRepository(context, stackId);
+            var repo = new FlashcardRepository(_context, stackId);
             int cardId;
             UserInput userInput = new UserInput();
             switch (opt)
@@ -54,7 +54,7 @@ namespace Flashcards.Services
                     break;
 
                 case 6:
-                    FlashcardView view = new FlashcardView(context);
+                    FlashcardView view = new FlashcardView(_context);
                     int choice = view.UpdateMenu();
                     Console.Clear();
                     repo.GetAllCards();

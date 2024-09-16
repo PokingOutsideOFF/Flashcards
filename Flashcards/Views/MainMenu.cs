@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using Flashcards.Services;
+using Spectre.Console;
 
 namespace Flashcards.Views
 {
@@ -29,17 +30,25 @@ namespace Flashcards.Views
 
         public void SelectView(int choice)
         {
-            DatabaseContext context = new DatabaseContext();
+            DatabaseContext _context = new DatabaseContext();
 
             switch (choice)
             {
                 case 1:
-                    var stackView = new StackView(context);
+                    var stackView = new StackView(_context);
                     stackView.Menu();
                     break;
                 case 2:
-                    var flashcardView = new FlashcardView(context);
+                    var flashcardView = new FlashcardView(_context);
                     flashcardView.Menu();
+                    break;
+                case 3:
+                    var studySessionService = new StudySessionService(_context);
+                    studySessionService.SelectOperation(choice);
+                    break;
+                case 4:
+                    studySessionService = new StudySessionService(_context);
+                    studySessionService.SelectOperation(choice);
                     break;
                 case 5:
                     break;
