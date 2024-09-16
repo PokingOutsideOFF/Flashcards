@@ -8,8 +8,8 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
    - `DB_NAME`: Your database name
 
 2. Modify the configuration file to use these environment variables:
-   ```xml
-<configuration>
+   xml
+   <configuration>
        < appSettings >
            < add key = "FlashcardsDBConnection" value = "Data Source=${DB_SERVER};Initial Catalog=${DB_NAME};Integrated Security=True;" />
        </ appSettings >
