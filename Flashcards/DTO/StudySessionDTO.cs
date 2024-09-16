@@ -4,5 +4,6 @@
     {
         public DateTime date { get; set; }
         public int score { get; set; }
+        public string duration { get; set; }
     }
 }

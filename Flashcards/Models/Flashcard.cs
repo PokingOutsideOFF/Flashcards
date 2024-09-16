@@ -9,6 +9,7 @@ namespace Flashcards.Models
         public string Question { get; set; }
         public string Answer { get; set; }
         public int StackId { get; set; }
+        public int StackCardId { get; set; }
         public Stack Stack { get; set; }
     }
 }

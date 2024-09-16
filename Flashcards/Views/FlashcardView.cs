@@ -1,6 +1,8 @@
 ﻿using Flashcards.Repository;
 using Flashcards.Services;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Spectre.Console;
+using System.Configuration;
 
 namespace Flashcards.Views
 {
@@ -26,6 +28,23 @@ namespace Flashcards.Views
                 }
                 else return stackName;
             }
+        }
+
+        public int UpdateMenu()
+        {
+            string choice = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                .Title("What do you want to update?")
+                .PageSize(3)
+                .AddChoices(new[]
+                {
+                    "1. Question", "2. Answer", "3. Both"
+                })
+                );
+
+            int opt = int.Parse(choice.Substring(0, 1));
+            return opt;
+
         }
 
         public void Menu()
@@ -65,3 +84,26 @@ namespace Flashcards.Views
         }
     }
 }
+
+//TOMMOROW WORK (already added Stack Card Id)
+// have to implement temporary flashcard id i.e for each stack id the card id will start from 1 and on dleetion of a flashcard the id will change accordingly i.e
+// id 4 will change to 3 upon deletion of id 3
+//(Done) - Review in morning
+//Add edit and delete functionality
+
+
+// Add a readme to provide sql script to create the database
+
+/*## Setup Instructions
+
+1.Set the following environment variables on your local machine:
+   - `DB_SERVER`: Your SQL Server instance name
+   - `DB_NAME`: Your database name
+
+2. Modify the configuration file to use these environment variables:
+   ```xml
+<configuration>
+       < appSettings >
+           < add key = "FlashcardsDBConnection" value = "Data Source=${DB_SERVER};Initial Catalog=${DB_NAME};Integrated Security=True;" />
+       </ appSettings >
+   </ configuration >*/

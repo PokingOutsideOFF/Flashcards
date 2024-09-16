@@ -25,8 +25,9 @@ namespace Flashcards.Repository
                 StackName = Stack_Name
             };
             _context.Add(stack);
-            AnsiConsole.Markup("[red]Row inserted[/]\n");
             _context.SaveChanges();
+            AnsiConsole.Markup("[red]Row inserted[/]\n");
+            GetStack();
         }
 
         public int GetStack()
@@ -52,35 +53,38 @@ namespace Flashcards.Repository
             return allStacks.Count;
         }
 
-        public void Update(string Stack_Name)
+        public void Update(string stackName, string updatedStackName)
         {
-            var stack = new Stack
+            var entity = _context.Stack.SingleOrDefault(s => s.StackName == stackName);
+
+            if (entity == null)
             {
-                StackName = Stack_Name
-            };
-            _context.Update(stack);
-            AnsiConsole.Markup("[red]Row updated[/]\n\n");
+                AnsiConsole.Markup("[red]Stack not found. Returning to Stack Menu.[/]\n\n");
+                return;
+            }  
+            
+            entity.StackName = updatedStackName;
+            
             _context.SaveChanges();
+            AnsiConsole.Markup("[red]Row updated[/]\n\n");
+            GetStack();
         }
 
-        public void Delete(string Stack_Name)
+        public void Delete(string stackName)
         {
-            var query = _context.Stack.FirstOrDefault(s => s.StackName.ToLower() == Stack_Name.ToLower());
+            var entity = _context.Stack.FirstOrDefault(s => s.StackName.ToLower() == stackName.ToLower());
 
-            if(query != null)
+            if(entity == null)
             {
-                _context.Remove(query);
-                _context.SaveChanges();
-                GetStack();
-            }
-            else
-            {
-                Console.WriteLine("Stack not found\n\n");
+                AnsiConsole.Markup("[red]Stack not found. Returning to Stack Menu[/]\n\n");
                 return;
             }
-
-            AnsiConsole.Markup("[red]Row deleted[/]\n\n");
+       
+            _context.Stack.Remove(entity);
             _context.SaveChanges();
+            AnsiConsole.Markup("[red]Row deleted[/]\n\n");
+            GetStack();
+
         }
 
         public bool CheckNameExists(string stackName)

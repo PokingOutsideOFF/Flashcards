@@ -32,20 +32,22 @@ namespace Flashcards.Services
                     int rows = repo.GetStack();
                     if (rows == 0) break;
 
-                    /*Console.Write("Enter Stack Id to be Updated: ");
-                    var stackId = input.GetInt();*/
-                    AnsiConsole.Markup("\nEnter Stack Name to be [red]Updated[/]: ");
+              
+                    Console.Write("\nEnter Stack Name to be Updated: ");
                     stackName = input.GetText();
 
-                    repo.Update(stackName);
-                    repo.GetStack();
+                    Console.Write("Enter new Stack Name: ");
+                    string updatedStackName = input.GetText();
+
+                    repo.Update(stackName, updatedStackName);
+            
                     break;
 
                 case 5:
                     rows = repo.GetStack();
                     if (rows == 0) break;
 
-                    AnsiConsole.Markup("Enter Stack Name to be [red]Deleted[/]: ");
+                    Console.Write("Enter Stack Name to be Deleted: ");
                     stackName = input.GetText();
 
                     repo.Delete(stackName);
