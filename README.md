@@ -17,14 +17,16 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
    ```
 
 3. Create tables on your SQL Server in following manner:
-   ```Stack Table:
+   **Stack Table:**
+   ```
    CREATE TABLE Stack (
     StackId INT IDENTITY(1,1) PRIMARY KEY,
     StackName NVARCHAR(50) NOT NULL
    );
    ```
-
-   ```Flashcard Table:
+   
+   **Flashcard Table:**
+   ```
    CREATE TABLE Flashcard (
     CardId INT IDENTITY(1,1) PRIMARY KEY,
     StackId INT NOT NULL,
@@ -38,7 +40,8 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
    );
    ```
 
-   ```Study Session Table:
+   **Study Session Table:**
+   ```
    CREATE TABLE StudySession (
     SessionId INT IDENTITY(1,1) PRIMARY KEY,
     StackId INT NOT NULL,
