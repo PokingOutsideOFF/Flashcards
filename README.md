@@ -17,6 +17,7 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
    ```
 
 3. Create tables on your SQL Server in following manner:
+   
    **Stack Table:**
    ```
    CREATE TABLE Stack (
