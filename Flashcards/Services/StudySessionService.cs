@@ -82,7 +82,9 @@ namespace Flashcards.Services
 
             else if(choice == 4)
             {
-                studyRepo.GetSession();
+                Console.Write("Enter Stack Name: ");
+                string stackName = userInput.GetText();
+                studyRepo.GetSession(stackName);
             }
 
             else if(choice == 5)

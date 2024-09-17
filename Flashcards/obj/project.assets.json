@@ -1959,11 +1959,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\CsharpProjects\\Flashcards\\Flashcards\\Flashcards.csproj",
+      "projectUniqueName": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\CsharpProjects\\KaitoKid.Flashcards\\Flashcards\\Flashcards.csproj",
       "projectName": "Flashcards",
-      "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\CsharpProjects\\Flashcards\\Flashcards\\Flashcards.csproj",
+      "projectPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\CsharpProjects\\KaitoKid.Flashcards\\Flashcards\\Flashcards.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\CsharpProjects\\Flashcards\\Flashcards\\obj\\",
+      "outputPath": "C:\\Users\\Lenovo\\OneDrive\\Desktop\\CsharpProjects\\KaitoKid.Flashcards\\Flashcards\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

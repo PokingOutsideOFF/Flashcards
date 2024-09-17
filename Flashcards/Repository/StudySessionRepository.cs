@@ -28,12 +28,12 @@ namespace Flashcards.Repository
 
         }
 
-        public void GetSession()
+        public void GetSession(string stackName)
         {
-            var entities = _context.StudySession.ToList();
+            var entities = _context.StudySession.Where(ss => ss.StackName == stackName).ToList();
             if(entities.Count == 0)
             {
-                AnsiConsole.Markup("No sessions started");
+                AnsiConsole.Markup("No sessions started or Stack doesnt exist");
                 return;
             }
 
@@ -51,9 +51,8 @@ namespace Flashcards.Repository
                     entity.StackName,
                     entity.Score.ToString(),
                     entity.Date.ToString(),
-                    entity.Duration);
+                    entity.Duration.Substring(0,8));
             }
-
             AnsiConsole.Write(table);
         }
 

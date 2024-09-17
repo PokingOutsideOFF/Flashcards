@@ -49,6 +49,7 @@ namespace Flashcards.Views
 
         public void Menu()
         {
+            
             string stackName = GetStackName();
            
             while (true)
