@@ -22,7 +22,7 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
    ```
    CREATE TABLE Stack (
     StackId INT IDENTITY(1,1) PRIMARY KEY,
-    StackName NVARCHAR(50) NOT NULL
+    StackName NVARCHAR(50) NOT NULL UNIQUE
    );
    ```
    
@@ -32,7 +32,7 @@ The Flashcard Project uses Entity Framework Core with SSMS to fulfill the given 
     CardId INT IDENTITY(1,1) PRIMARY KEY,
     StackId INT NOT NULL,
     StackCardId INT,
-    Question NVARCHAR(50) NOT NULL,
+    Question NVARCHAR(50) NOT NULL UNIQUE,
     Answer NVARCHAR(50) NOT NULL,
     CONSTRAINT FK_Stack_Cards FOREIGN KEY (StackId)
         REFERENCES Stack(StackId)
