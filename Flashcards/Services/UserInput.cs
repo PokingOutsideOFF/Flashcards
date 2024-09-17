@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Spectre.Console;
 
 namespace Flashcards.Services
 {
@@ -10,7 +6,19 @@ namespace Flashcards.Services
     {
         public string GetText()
         {
-            string text = Console.ReadLine();
+            string text;
+            while (true)
+            {
+                text = Console.ReadLine();
+                if (text == "")
+                {
+
+                    AnsiConsole.Markup("[red]Empty word not allowed[/]");
+                    Console.Write("\nEnter again: ");
+                }
+                else
+                    break;
+            }
             return text;
         }
 

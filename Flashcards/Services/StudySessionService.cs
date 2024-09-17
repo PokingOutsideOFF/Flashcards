@@ -33,10 +33,16 @@ namespace Flashcards.Services
 
                 //Get all flashcard from repo
                 var cards = cardRepo.GetAllCards();
+                if(cards.Count == 0)
+                {
+                    AnsiConsole.Markup("[blue]Press enter to continue[/]");
+                    Console.ReadLine();
+                    Console.Clear();
+                    return;
+                }
                 Console.Clear();
                 Console.WriteLine("Starting Study Session: \n\n");
 
-                Console.WriteLine(startDate);
                 //Extract question and answer from database;
                 timer.Start();
                 foreach (var card in cards) { 
@@ -48,7 +54,10 @@ namespace Flashcards.Services
                         score++;
                     }
                     else
-                        AnsiConsole.Markup("[red]Wrong answer[/]\n\n");
+                    {
+                        AnsiConsole.Markup("[red]Wrong answer[/]\n");
+                        AnsiConsole.Markup($"[green]Correct answer: {card.Answer}[/]\n");
+                    }
 
                     Console.Write("Press 1 to continue: ");
                     int num = userInput.GetInt();
@@ -74,6 +83,13 @@ namespace Flashcards.Services
             else if(choice == 4)
             {
                 studyRepo.GetSession();
+            }
+
+            else if(choice == 5)
+            {
+                Console.Write("Enter year: ");
+                int year = userInput.GetInt();
+                studyRepo.GetReport(year);
             }
             AnsiConsole.Markup("\n[blue]Press enter to continue....[/]");
             Console.ReadLine();

@@ -15,44 +15,54 @@ namespace Flashcards.Services
         {
             var repo = new StackRepository(_context);
             var input = new UserInput();
-            switch (choice)
+            try
             {
-                case 2:
-                    Console.Write("Enter Stack Name: ");
-                    var stackName = input.GetText();
 
-                    repo.Insert(stackName);
-                    break;
 
-                case 3:
-                    repo.GetStack();
-                    break;
+                switch (choice)
+                {
+                    case 2:
+                        Console.Write("Enter Stack Name: ");
+                        var stackName = input.GetText();
 
-                case 4:
-                    int rows = repo.GetStack();
-                    if (rows == 0) break;
+                        repo.Insert(stackName);
+                        break;
 
-              
-                    Console.Write("\nEnter Stack Name to be Updated: ");
-                    stackName = input.GetText();
+                    case 3:
+                        repo.GetStack();
+                        break;
 
-                    Console.Write("Enter new Stack Name: ");
-                    string updatedStackName = input.GetText();
+                    case 4:
+                        int rows = repo.GetStack();
+                        if (rows == 0) break;
 
-                    repo.Update(stackName, updatedStackName);
-            
-                    break;
 
-                case 5:
-                    rows = repo.GetStack();
-                    if (rows == 0) break;
+                        Console.Write("\nEnter Stack Name to be Updated: ");
+                        stackName = input.GetText();
 
-                    Console.Write("Enter Stack Name to be Deleted: ");
-                    stackName = input.GetText();
+                        Console.Write("Enter new Stack Name: ");
+                        string updatedStackName = input.GetText();
 
-                    repo.Delete(stackName);
+                        repo.Update(stackName, updatedStackName);
 
-                    break;
+                        break;
+
+                    case 5:
+                        rows = repo.GetStack();
+                        if (rows == 0) break;
+
+                        Console.Write("Enter Stack Name to be Deleted: ");
+                        stackName = input.GetText();
+
+                        repo.Delete(stackName);
+
+                        break;
+                }
+            }
+            catch(Exception ex)
+            {
+                AnsiConsole.Markup($"\n[red]{ex.InnerException.Message}[/]\n\n");
+                _context.ChangeTracker.Clear();
             }
             AnsiConsole.Markup("\n[blue]Press enter to continue....[/]");
             Console.ReadLine();

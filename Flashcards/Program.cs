@@ -5,6 +5,7 @@ public class Program
 {
     static void Main()
     {
+        Console.Clear(); 
         var mainMenu = new MainMenu();
         mainMenu.Menu();
     }

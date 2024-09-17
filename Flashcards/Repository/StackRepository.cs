@@ -38,7 +38,7 @@ namespace Flashcards.Repository
 
             AnsiConsole.Markup("\n[blue]Stack Table[/]\n");
             var table = new Table();
-            table.AddColumn("Stack Name");
+            table.AddColumn("[green]Stack Name[/]");
 
             foreach (var stack in allStacks)
             {

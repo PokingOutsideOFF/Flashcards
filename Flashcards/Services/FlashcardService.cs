@@ -23,81 +23,94 @@ namespace Flashcards.Services
             var repo = new FlashcardRepository(_context, stackId);
             int cardId;
             UserInput userInput = new UserInput();
-            switch (opt)
+            try
             {
-                case 3:
-                    repo.GetAllCards();
-                    break;
 
-                case 4:
-                    Console.Write("How many flashcards you want to view?: ");
-                    int limit = userInput.GetInt();
-                    repo.GetXCards(limit);
-                    break;
-                
-                case 5:
-                    string response;
-                    do
-                    {
-                        Console.Write("Enter Question: ");
-                        string question = userInput.GetText();
-                        Console.Write("Enter Answer: ");
-                        string answer = userInput.GetText();
 
-                        repo.Insert(question, answer);
-
-                        Console.Write("\nPress y to add another flashcard: ");
-                        response = userInput.GetText();
-                        Console.WriteLine();
-
-                    } while (response.ToLower() == "y");
-                    break;
-
-                case 6:
-                    var view = new FlashcardView(_context);
-                    if (repo.GetAllCards().Count == 0) {
+                switch (opt)
+                {
+                    case 3:
+                        repo.GetAllCards();
                         break;
-                    }
-                    int choice = view.UpdateMenu();
-                    Console.Clear();
-                    switch (choice)
-                    {
-                        case 1:
-                            Console.Write("Enter Card Id to be Updated: ");
-                            cardId = userInput.GetInt();
-                            Console.Write("Enter new question: ");
+
+                    case 4:
+                        Console.Write("How many flashcards you want to view?: ");
+                        int limit = userInput.GetInt();
+                        repo.GetXCards(limit);
+                        break;
+
+                    case 5:
+                        string response;
+                        do
+                        {
+                            Console.Write("Enter Question: ");
                             string question = userInput.GetText();
-                            repo.UpdateQuestion(cardId, question);
-                            break;
-
-                        case 2:
-                            Console.Write("Enter Card Id to be Updated: ");
-                            cardId = userInput.GetInt();
-                            Console.Write("Enter new answer: ");
+                            Console.Write("Enter Answer: ");
                             string answer = userInput.GetText();
-                            repo.UpdateAnswer(cardId, answer);
+
+                            repo.Insert(question, answer);
+
+                            Console.Write("\nPress y to add another flashcard: ");
+                            response = userInput.GetText();
+                            Console.WriteLine();
+
+                        } while (response.ToLower() == "y");
+                        break;
+
+                    case 6:
+                        var view = new FlashcardView(_context);
+                        if (repo.GetAllCards().Count == 0)
+                        {
                             break;
+                        }
+                        int choice = view.UpdateMenu();
+                        Console.Clear();
+                        repo.GetAllCards();
+                        switch (choice)
+                        {
+                            case 1:
+                                Console.Write("Enter Card Id to be Updated: ");
+                                cardId = userInput.GetInt();
+                                Console.Write("Enter new question: ");
+                                string question = userInput.GetText();
+                                repo.UpdateQuestion(cardId, question);
+                                break;
 
-                        case 3:
-                            Console.Write("Enter Card Id to be Updated: ");
-                            cardId = userInput.GetInt();
-                            Console.Write("Enter new question: ");
-                            question = userInput.GetText();
-                            Console.Write("Enter new answer: ");
-                            answer = userInput.GetText();
+                            case 2:
+                                Console.Write("Enter Card Id to be Updated: ");
+                                cardId = userInput.GetInt();
+                                Console.Write("Enter new answer: ");
+                                string answer = userInput.GetText();
+                                repo.UpdateAnswer(cardId, answer);
+                                break;
 
-                            repo.UpdateQuestionAnswer(cardId, question, answer);
-                            break;
-                    }
-                    break;
+                            case 3:
+                                Console.Write("Enter Card Id to be Updated: ");
+                                cardId = userInput.GetInt();
+                                Console.Write("Enter new question: ");
+                                question = userInput.GetText();
+                                Console.Write("Enter new answer: ");
+                                answer = userInput.GetText();
 
-                case 7:
-                    repo.GetAllCards();
-                    Console.Write("\nEnter Card Id to be Deleted: ");
-                    cardId = userInput.GetInt();
-                    repo.Delete(cardId);
-                    break;
+                                repo.UpdateQuestionAnswer(cardId, question, answer);
+                                break;
+                            case 4:
+                                return;
+                        }
+                        break;
 
+                    case 7:
+                        repo.GetAllCards();
+                        Console.Write("\nEnter Card Id to be Deleted: ");
+                        cardId = userInput.GetInt();
+                        repo.Delete(cardId);
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                AnsiConsole.Markup($"\n[red]{ex.InnerException.Message}[/]\n\n");
+                _context.ChangeTracker.Clear();
             }
             AnsiConsole.Markup("[blue]Press enter to continue....[/]");
             Console.ReadLine();

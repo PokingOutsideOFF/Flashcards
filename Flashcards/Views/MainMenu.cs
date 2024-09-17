@@ -12,13 +12,13 @@ namespace Flashcards.Views
                 string choice = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                     .Title("MAIN MENU")
-                    .PageSize(5)
+                    .PageSize(6)
                     .AddChoices(new[]
                     {
-                    "1. Manage Stacks", "2. Manage Flashcards", "3. Study", "4. View Study Session", "5. Exit"
+                    "1. Manage Stacks", "2. Manage Flashcards", "3. Study", "4. View Study Session", "5. Yearly Report", "6. Exit"
                     }));
 
-                if (int.Parse(choice.Substring(0, 1)) == 5)
+                if (int.Parse(choice.Substring(0, 1)) == 6)
                 {
                     AnsiConsole.Markup("[red]Exiting.....[/]");
                     Thread.Sleep(1000);
@@ -51,11 +51,13 @@ namespace Flashcards.Views
                     studySessionService.SelectOperation(choice);
                     break;
                 case 5:
+                    studySessionService= new StudySessionService(_context);
+                    studySessionService.SelectOperation(choice);
+                    break;
+                case 6:
                     break;
             }
         }
 
     }
 }
-
-//MAINMENU -> View -> Service -> Repo 

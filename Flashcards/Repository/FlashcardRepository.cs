@@ -17,14 +17,6 @@ namespace Flashcards.Repository
 
         public List<FlashcardDTO> GetAllCards()
         {
-            /*var entities = (from flashcard in _context.Flashcard
-                                        join stack in _context.Stack
-                                        on flashcard.StackId equals stack.StackId
-                                        select new FlashcardDTO
-                                        {
-                                            Question = flashcard.Question,
-                                            Answer = flashcard.Answer,
-                                        }).ToList();*/
             var entities = _context.Flashcard
                           .Where(flashcard => flashcard.StackId == stackId)
                           .Select(flashcard => new FlashcardDTO
@@ -59,16 +51,16 @@ namespace Flashcards.Repository
         {
             if (entities.Count() == 0)
             {
-                AnsiConsole.Markup("[red]Table is empty...[/]\n\n");
+                AnsiConsole.Markup("\n[red]Table is empty...[/]\n\n");
                 Thread.Sleep(1000);
                 return;
             }
 
             AnsiConsole.Markup("\n[blue]Stack Table[/]\n");
             var table = new Table();
-            table.AddColumn("Card Id");
-            table.AddColumn("Question");
-            table.AddColumn("Answer");
+            table.AddColumn("[green]Card Id[/]");
+            table.AddColumn("[green]Question[/]");
+            table.AddColumn("[green]Answer[/]");
 
             foreach (var entity in entities)
             {
@@ -96,12 +88,12 @@ namespace Flashcards.Repository
                 StackCardId = maxNumber + 1
             };
             _context.Add(flashcard);
-            AnsiConsole.Markup("[red]Row inserted[/]\n");
             _context.SaveChanges();
+            AnsiConsole.Markup("[red]Row inserted[/]\n");
         }
         public void UpdateQuestion(int cardId, string question)
         {
-            var entity = _context.Flashcard.FirstOrDefault(f => f.StackCardId == cardId);
+            var entity = _context.Flashcard.FirstOrDefault(f => f.StackCardId == cardId  && f.StackId == stackId);
             if (entity == null)
             {
                 AnsiConsole.Markup("[red]Id not found. Returning to Stack Menu[/]\n\n");
@@ -109,6 +101,7 @@ namespace Flashcards.Repository
             }
 
             entity.Question = question;
+            
             _context.SaveChanges();
             AnsiConsole.Markup("[red]Row updated[/]\n\n");
             GetAllCards();
@@ -116,7 +109,8 @@ namespace Flashcards.Repository
 
         public void UpdateAnswer(int cardId, string answer)
         {
-            var entity = _context.Flashcard.FirstOrDefault(f => f.StackCardId == cardId);
+            var entity = _context.Flashcard.FirstOrDefault(f => f.StackCardId == cardId  && f.StackId == stackId);
+
             if (entity == null)
             {
                 AnsiConsole.Markup("[red]Id not found. Returning to Stack Menu[/]\n\n");
@@ -131,7 +125,8 @@ namespace Flashcards.Repository
 
         public void UpdateQuestionAnswer(int cardId, string question, string answer)
         {
-            var entity = _context.Flashcard.FirstOrDefault(f => f.StackCardId == cardId);
+            var entity = _context.Flashcard.FirstOrDefault(f => f.StackCardId == cardId  && f.StackId == stackId);
+
             if (entity == null)
             {
                 AnsiConsole.Markup("[red]Id not found. Returning to Stack Menu[/]\n\n");

@@ -24,7 +24,7 @@ namespace Flashcards.Views
                 var stackView = new StackRepository(_context);
                 if (!stackView.CheckNameExists(stackName.ToLower()))
                 {
-                    AnsiConsole.Markup("[red]Stack doesn't exist. Enter again.[/]\n");
+                    AnsiConsole.Markup("[red]Stack doesn't exist. Enter again.[/]\n\n");
                 }
                 else return stackName;
             }
@@ -35,10 +35,10 @@ namespace Flashcards.Views
             string choice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                 .Title("What do you want to update?")
-                .PageSize(3)
+                .PageSize(4)
                 .AddChoices(new[]
                 {
-                    "1. Question", "2. Answer", "3. Both"
+                    "1. Question", "2. Answer", "3. Both" ,"4. Back to Menu"
                 })
                 );
 
