@@ -100,7 +100,10 @@ namespace Flashcards.Services
                         break;
 
                     case 7:
-                        repo.GetAllCards();
+                        if(repo.GetAllCards().Count == 0)
+                        {
+                            break;
+                        }
                         Console.Write("\nEnter Card Id to be Deleted: ");
                         cardId = userInput.GetInt();
                         repo.Delete(cardId);
