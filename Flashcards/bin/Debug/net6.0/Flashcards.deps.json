@@ -9,6 +9,7 @@
       "Flashcards/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.33",
+          "Microsoft.EntityFrameworkCore.Design": "6.0.33",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.33",
           "Spectre.Console": "0.49.1",
           "System.Configuration.ConfigurationManager": "8.0.0",
@@ -16,6 +17,14 @@
         },
         "runtime": {
           "Flashcards.dll": {}
+        }
+      },
+      "Humanizer.Core/2.8.26": {
+        "runtime": {
+          "lib/netstandard2.0/Humanizer.dll": {
+            "assemblyVersion": "2.8.0.0",
+            "fileVersion": "2.8.26.1919"
+          }
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -103,6 +112,18 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/6.0.33": {},
+      "Microsoft.EntityFrameworkCore.Design/6.0.33": {
+        "dependencies": {
+          "Humanizer.Core": "2.8.26",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.33"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "6.0.33.0",
+            "fileVersion": "6.0.3324.36105"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/6.0.33": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.33",
@@ -458,6 +479,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Humanizer.Core/2.8.26": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
+      "path": "humanizer.core/2.8.26",
+      "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
+    },
     "Microsoft.CSharp/4.5.0": {
       "type": "package",
       "serviceable": true,
@@ -499,6 +527,13 @@
       "sha512": "sha512-MXIRItpxrFCccOBB0thHjRxKuA06w88qE8qa7A/eo6cWx6BOfScEe35+enH9T5eYUwCfW0CcneyP3v7TRKedTQ==",
       "path": "microsoft.entityframeworkcore.analyzers/6.0.33",
       "hashPath": "microsoft.entityframeworkcore.analyzers.6.0.33.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Design/6.0.33": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-il6DvyJ++C6GLAfQAaDK2FAy2DTKoAzBN1a9pSm0Lps7U2rcjFJCyPNGxwQgN2S7dAspOqnwRgpSAzRLFbHTOw==",
+      "path": "microsoft.entityframeworkcore.design/6.0.33",
+      "hashPath": "microsoft.entityframeworkcore.design.6.0.33.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/6.0.33": {
       "type": "package",
