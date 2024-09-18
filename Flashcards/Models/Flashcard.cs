@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Flashcards.Models
 {
-    [Index(nameof(Question), IsUnique = true)]
     public class Flashcard
     {
         [Key]
